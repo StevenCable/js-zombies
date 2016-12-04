@@ -57,7 +57,12 @@ class Weapon extends Item{
  * @param {number} energy     The energy the food provides.
  * @property {number} energy
  */
-
+class Food extends Item{
+  constructor(name, energy){
+    super(name);
+    this.energy = energy;
+  }
+}
 
 /**
  * Food Extends Item Class
@@ -87,6 +92,26 @@ class Weapon extends Item{
  * @property {method} getPack              Returns private variable `pack`.
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
+ class Player{
+  constructor (name, health, strength, speed){
+    this.name = name;
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this._pack = [];
+    this._maxHealth = health;
+    this.isAlive = true;
+    this.equipped = false;
+  }
+
+  getPack(){
+    return this._pack;
+  }
+
+  getMaxHealth(){
+    return this._maxHealth;
+  }
+ 
 
 
 /**
@@ -100,7 +125,9 @@ class Weapon extends Item{
  *
  * @name checkPack
  */
-
+ checkPack(){
+  console.log(this.getPack());
+ }
 
 /**
  * Player Class Method => takeItem(item)
@@ -119,7 +146,16 @@ class Weapon extends Item{
  * @param {Item/Weapon/Food} item   The item to take.
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
-
+takeItem(item){
+  if (this._pack.length <3){
+    this._pack.push(item);
+    console.log(this.name + ` added ${item.name}`);
+    return true;
+  }else{
+    console.log(`This ain't a Mary Poppins Bag! ${item.name} ain't gonna fit`); //this isn't showing with the test, but passes?
+    return false;
+  }
+}
 
 /**
  * Player Class Method => discardItem(item)
@@ -146,7 +182,16 @@ class Weapon extends Item{
  * @param {Item/Weapon/Food} item   The item to discard.
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
-
+discardItem(item){
+  if(this._pack.indexOf(item) >-1){
+    this._pack.splice(this._pack.indexOf(item),1);
+    console.log(this.name + `, ${item.name} was fuckin' tossed. Nice throw.`);
+    return true;
+  }else{
+      console.log(this.name + `,you wish you had ${item.name} just so you could discard it, huh.`);
+    return false;
+  }
+}
 
 /**
  * Player Class Method => equip(itemToEquip)
@@ -167,6 +212,27 @@ class Weapon extends Item{
  * @name equip
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
+equip(itemToEquip){
+  if(itemToEquip instanceof Weapon){
+    if(this._pack.indexOf(itemToEquip)>-1){
+      if(this.equipped === false){
+        this.equipped = itemToEquip;
+        this._pack.splice(this._pack.indexOf(itemToEquip),1);
+        console.log(this.name + ` equipped ${itemToEquip.name} even though his kicks are the greatest weapon of all time.`);
+        return true; 
+      }
+      if(this.equipped !== false){
+        this.takeItem(this.equipped);
+        this.equipped = itemToEquip;
+        this._pack.splice(this._pack.indexOf(itemToEquip),1);
+        console.log(this.name + ` equipped ${itemToEquip.name} even though his kicks are the greatest weapon of all time.`);
+        return true;
+      }
+    }
+    }else{
+      console.log(`${itemToEquip.name} can't hurt anyone. Won't equip it for your own good.`);
+    }
+  }
 
 
 /**
@@ -187,7 +253,22 @@ class Weapon extends Item{
  * @name eat
  * @param {Food} itemToEat  The food item to eat.
  */
-
+eat(itemToEat){ 
+  if(itemToEat instanceof Food){ 
+    if(this._pack.indexOf(itemToEat)>-1){
+      if((this.health + itemToEat.energy) > this.getMaxHealth()){
+          this.health = this._maxHealth;
+        }else{
+          this.health += itemToEat.energy;
+        }
+        this._pack.splice(this._pack.indexOf(itemToEat),1);
+    }else{
+      console.log(`While ${itemToEat.name} sounds delicious, you'd have to have that in order to actually eat it, idiot. Did you starve yourself into a stupor?`);
+    }
+  }else{
+    console.log(`${itemToEat.name} might as well be mayonnaise, it's just not edible`);
+  }
+}
 
 /**
  * Player Class Method => useItem(item)
@@ -201,7 +282,18 @@ class Weapon extends Item{
  * @name useItem
  * @param {Item/Weapon/Food} item   The item to use.
  */
-
+useItem(item){
+  if(item instanceof Weapon || item instanceof Food){
+    if(item instanceof Weapon){
+      this.equip(item);
+    }
+    if(item instanceof Food){
+      this.eat(item);
+    }
+  }else{
+    console.log(`${item} is fuckin' useless. Like toss?`);
+  }
+}
 
 /**
  * Player Class Method => equippedWith()
@@ -216,8 +308,17 @@ class Weapon extends Item{
  * @name equippedWith
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
+ equippedWith(){
+  if(this.equipped === false){
+    console.log(this.name + " currently aint got shit");
+    return false;
+  }else{
+    console.log(this.name + " has " + this.equipped.name + " equipped, fyi.");
+    return this.equipped.name;
+  }
+ }
 
-
+}
 /**
  * Class => Zombie(health, strength, speed)
  * -----------------------------
@@ -233,7 +334,15 @@ class Weapon extends Item{
  * @property {number} speed
  * @property {boolean} isAlive      Default value should be `true`.
  */
-
+class Zombie {
+  constructor(health, strength, speed){
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this._maxHealth = health;
+    this.isAlive = true;
+  }
+}
 
 /**
  * Class => FastZombie(health, strength, speed)
@@ -249,7 +358,13 @@ class Weapon extends Item{
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
+class FastZombie extends Zombie{
+  constructor(health, strength, speed){
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+  }
+}
 
 /**
  * FastZombie Extends Zombie Class

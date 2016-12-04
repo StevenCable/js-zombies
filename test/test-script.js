@@ -77,81 +77,81 @@ describe('Player', function() {
   });
 
   it('should have a name', function() {
-    var player = new Player("Lee", 100, 15, 7);
-    player.name.should.equal("Lee");
+    var player = new Player("Chuck Norris", 100, 15, 7);
+    player.name.should.equal("Chuck Norris");
   });
 
   it('should have health', function() {
-    var player = new Player("Lee", 100, 15, 7);
+    var player = new Player("Chuck Norris", 100, 15, 7);
     player.health.should.equal(100);
   });
 
   it('should have a strength attribute', function() {
-    var player = new Player("Lee", 100, 15, 7);
+    var player = new Player("Chuck Norris", 100, 15, 7);
     player.strength.should.equal(15);
   });
 
   it('should have a speed attribute', function() {
-    var player = new Player("Lee", 100, 15, 7);
+    var player = new Player("Chuck Norris", 100, 15, 7);
     player.speed.should.equal(7);
   });
 
   it('should have a private pack variable', function() {
-    var player = new Player("Lee", 100, 15, 7);
+    var player = new Player("Chuck Norris", 100, 15, 7);
     expect(player.pack).to.be.undefined;
   });
 
   it('should have a private maxHealth variable', function() {
-    var player = new Player("Lee", 100, 15, 7);
+    var player = new Player("Chuck Norris", 100, 15, 7);
     expect(player.maxHealth).to.be.undefined;
   });
 
   it('should be alive', function() {
-    var player = new Player("Lee", 100, 15, 7);
+    var player = new Player("Chuck Norris", 100, 15, 7);
     player.isAlive.should.equal(true);
   });
 
   it('should not be equipped', function() {
-    var player = new Player("Lee", 100, 15, 7);
+    var player = new Player("Chuck Norris", 100, 15, 7);
     player.equipped.should.equal(false);
   });
 
   describe('.getPack', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.getPack).to.be.a('function');
     });
     it('should return the player\'s pack', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.getPack()).to.be.an('Array');
     });
   }); // end .getPack specs
 
   describe('.getMaxHealth', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.getMaxHealth).to.be.a('function');
     });
 
     it('should return the player\'s max health', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.getMaxHealth()).to.be.a('number');
     });
 
     it('should be at least the player\'s current health', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.getMaxHealth()).to.be.at.least(player.health);
     });
   }); // end .getMaxHealth specs
 
   describe('.takeItem', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.takeItem).to.be.a('function');
     });
 
     it('should place an item into the player\'s pack', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var torch = new Item("Torch");
       var dagger = new Weapon("Dagger", 10);
       var apple = new Food("Apple", 25);
@@ -167,7 +167,7 @@ describe('Player', function() {
     });
 
     it('should not place an item into the player\'s pack if it is full', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var torch = new Item("Torch");
       var dagger = new Weapon("Dagger", 10);
       var apple = new Food("Apple", 25);
@@ -189,12 +189,12 @@ describe('Player', function() {
 
   describe('.discardItem', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.discardItem).to.be.a('function');
     });
 
     it('should discard an item from the player\'s pack', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var torch = new Item("Torch");
       var dagger = new Weapon("Dagger", 10);
       var apple = new Food("Apple", 25);
@@ -216,13 +216,13 @@ describe('Player', function() {
 
   describe('.checkPack', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.checkPack).to.be.a('function');
     });
 
     it('should print the contents of the player\'s pack', function() {
       sandbox.stub(console, "log");
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
 
       player.checkPack();
       sinon.assert.called(console.log);
@@ -231,12 +231,12 @@ describe('Player', function() {
 
   describe('.equip', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.equip).to.be.a('function');
     });
 
     it('should only be able to equip Weapons', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var battery = new Item("Battery");
       var banana = new Food("Banana", 35);
 
@@ -247,7 +247,7 @@ describe('Player', function() {
     });
 
     it('should not equip weapons that are not in the player\'s pack', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var dagger = new Weapon("Dagger", 10);
 
       player.equip(dagger);
@@ -256,7 +256,7 @@ describe('Player', function() {
     });
 
     it('should equip weapons that are in the player\'s pack', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var dagger = new Weapon("Dagger", 10);
 
       player.takeItem(dagger);
@@ -267,7 +267,7 @@ describe('Player', function() {
     });
 
     it('should swap weapons if one is already equipped', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var dagger = new Weapon("Dagger", 10);
       var crowbar = new Weapon("Crowbar", 45);
 
@@ -286,12 +286,12 @@ describe('Player', function() {
 
   describe('.eat', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.eat).be.a('function');
     });
 
     it('should only eat Food items', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var battery = new Item("Battery");
       var crowbar = new Weapon("Crowbar", 45);
 
@@ -305,7 +305,7 @@ describe('Player', function() {
     });
 
     it('should not eat Food items if they are not in player\'s pack', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var apple = new Food("Apple", 25);
 
       player.health = 85;
@@ -315,7 +315,7 @@ describe('Player', function() {
     });
 
     it('should eat Food items that are in player\'s pack', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var maxHealth = player.getMaxHealth();
       var maxTomato = new Food("Maximum tomato", maxHealth);
 
@@ -331,12 +331,12 @@ describe('Player', function() {
 
   describe('.useItem', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.useItem).to.be.a('function');
     });
 
     it('should equip the item if a weapon', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var crossbow = new Weapon("Crossbow", 35);
 
       player.takeItem(crossbow);
@@ -347,7 +347,7 @@ describe('Player', function() {
     });
 
     it('should eat the item if food', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var blueberries = new Food("Blueberries", 15);
 
       player.health = 30;
@@ -362,12 +362,12 @@ describe('Player', function() {
 
   describe('.equippedWith', function() {
     it('should be a function', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       expect(player.equippedWith).to.be.a('function');
     });
 
     it('should return the weapon name if one is equipped', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var crossbow = new Weapon("Crossbow", 35);
 
       player.takeItem(crossbow);
@@ -376,7 +376,7 @@ describe('Player', function() {
     });
 
     it('should return false if nothing is equipped', function() {
-      var player = new Player("Lee", 100, 15, 7);
+      var player = new Player("Chuck Norris", 100, 15, 7);
       var crossbow = new Weapon("Crossbow", 35);
 
       player.takeItem(crossbow);

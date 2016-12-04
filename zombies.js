@@ -126,10 +126,10 @@ class Food extends Item{
  * @name checkPack
  */
  checkPack(){
-  var itemNames = [];
-  for (var i = 0; i < this._pack.length; i++) {
-      itemNames.push(this._pack[i].name);
-  }
+  var itemNames = this._pack.map(item => {
+    return item.name;
+  });
+  
      
   console.log("Contents of pack: " + itemNames.join(", "));
  }

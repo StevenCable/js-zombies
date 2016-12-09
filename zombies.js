@@ -7,6 +7,13 @@
  * @param {string} name     The item's name.
  * @property {string} name
  */
+ class Item {
+  constructor (name){
+    this.name = name;
+
+  }
+
+ }
 
 
 /**
@@ -359,3 +366,7 @@ function runGame() {
   // console.log("After health: " + player.health);
   // player.checkPack();
 }
+
+module.exports = {
+  item: Item,
+};
